@@ -1,0 +1,48 @@
+{
+  "name": "next-cache-doctor",
+  "version": "0.2.2",
+  "description": "Read a Next.js project and report cache layers that can stay stale after invalidation.",
+  "main": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "next-cache-doctor": "./bin/next-cache-doctor.js"
+  },
+  "files": [
+    "bin",
+    "src",
+    "docs",
+    "README.md",
+    "CHANGELOG.md",
+    "SECURITY.md",
+    "LICENSE",
+    "composer.json"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.js"
+  },
+  "author": "Adesh Suryan",
+  "license": "MIT",
+  "keywords": [
+    "nextjs",
+    "cache",
+    "revalidate",
+    "isr"
+  ],
+  "homepage": "https://github.com/adeshsuryan/next-cache-doctor#readme",
+  "bugs": {
+    "url": "https://github.com/adeshsuryan/next-cache-doctor/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adeshsuryan/next-cache-doctor.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

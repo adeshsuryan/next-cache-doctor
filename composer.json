@@ -1,0 +1,14 @@
+{
+  "name": "adeshsuryan/next-cache-doctor",
+  "description": "Read a Next.js project and report cache layers that can stay stale after invalidation.",
+  "type": "library",
+  "license": "MIT",
+  "homepage": "https://github.com/adeshsuryan/next-cache-doctor",
+  "support": {
+    "issues": "https://github.com/adeshsuryan/next-cache-doctor/issues",
+    "source": "https://github.com/adeshsuryan/next-cache-doctor"
+  },
+  "require": {
+    "php": ">=8.1"
+  }
+}
