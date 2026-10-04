@@ -2,6 +2,15 @@
 
 Each entry matches one tagged commit on `main`. The tag, the `version` field in `package.json`, and this file use the same number.
 
+## 0.2.3 - 2026-10-04
+
+Tag: `v0.2.3`
+
+### Changed
+
+- Republished on a clean git history so Packagist can track a new immutable release after upstream tags were rewritten (Packagist version immutability).
+- Composer installs should use `adeshsuryan/next-cache-doctor:^0.2.3` (or `^0.2`) to resolve this release.
+
 ## 0.2.2 - 2026-10-03
 
 Tag: `v0.2.2`
