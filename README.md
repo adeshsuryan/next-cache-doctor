@@ -8,57 +8,56 @@ A database update, `revalidateTag()`, and a fresh server do not guarantee a fres
 
 It is a library and a command. It does not start Next.js, call Redis, or purge a CDN. The command finishes and exits, so a process manager such as PM2 is not part of the setup.
 
-Current release: **0.2.3**. Each release commit on `main` is an annotated git tag, `v0.2.3`, and an entry in [CHANGELOG.md](CHANGELOG.md).
+Current release: **0.2.4**. Each release commit on `main` is an annotated git tag, `v0.2.4`, and an entry in [CHANGELOG.md](CHANGELOG.md).
 
-- Packagist: https://packagist.org/packages/adeshsuryan/next-cache-doctor
 - GitHub: https://github.com/adeshsuryan/next-cache-doctor
-- npm (Next.js / Node): use `@adeshsuryan/next-cache-doctor` when published. The unscoped name `next-cache-doctor` is already taken on npm by another package.
+- npm: https://www.npmjs.com/package/@adeshsuryandev/next-cache-doctor
+- JSR: https://jsr.io/@adeshsuryan/next-cache-doctor
+- Packagist: https://packagist.org/packages/adeshsuryan/next-cache-doctor
+
+The unscoped npm name `next-cache-doctor` is taken by another package. Node installs use the scoped names below.
 
 ## Install
 
 Node.js 18 or newer.
 
+### npm / pnpm / yarn (recommended for Next.js)
+
+```bash
+npm install @adeshsuryandev/next-cache-doctor
+pnpm add @adeshsuryandev/next-cache-doctor
+yarn add @adeshsuryandev/next-cache-doctor
+```
+
+```bash
+npx @adeshsuryandev/next-cache-doctor
+```
+
+### JSR
+
+```bash
+npx jsr add @adeshsuryan/next-cache-doctor
+# or: deno add jsr:@adeshsuryan/next-cache-doctor
+```
+
 ### Composer (Packagist)
 
-Composer installs the files. Node runs them. Packagist does not host a separate product image upload; it shows this GitHub README, including the banner above.
+Composer installs the files. Node runs them.
 
 ```bash
 composer require adeshsuryan/next-cache-doctor
 node vendor/adeshsuryan/next-cache-doctor/bin/next-cache-doctor.js
 ```
 
-### npm / pnpm / yarn
-
-For Next.js apps, the package host is **npm** (and Yarn/pnpm clients of that registry), not Packagist. Until the scoped package is published, install from GitHub:
-
-```bash
-npm install github:adeshsuryan/next-cache-doctor
-pnpm add github:adeshsuryan/next-cache-doctor
-yarn add github:adeshsuryan/next-cache-doctor
-```
-
-After publish:
-
-```bash
-npm install @adeshsuryan/next-cache-doctor
-pnpm add @adeshsuryan/next-cache-doctor
-yarn add @adeshsuryan/next-cache-doctor
-```
-
-Run without adding it to a project:
-
-```bash
-npx github:adeshsuryan/next-cache-doctor
-pnpm dlx github:adeshsuryan/next-cache-doctor
-yarn dlx github:adeshsuryan/next-cache-doctor
-```
-
 ## Use it from code
 
 ```js
-const { run, render } = require("next-cache-doctor");
-// After the scoped npm publish:
-// const { run, render } = require("@adeshsuryan/next-cache-doctor");
+// npm (CommonJS)
+const { run, render } = require("@adeshsuryandev/next-cache-doctor");
+
+// npm / JSR (ESM)
+// import { run, render } from "@adeshsuryandev/next-cache-doctor";
+// import { run, render } from "@adeshsuryan/next-cache-doctor";
 
 const result = run("/path/to/next-app");
 process.stdout.write(render(result));
@@ -75,7 +74,7 @@ for (const finding of result.findings) {
 ## Use it from the shell
 
 ```bash
-npx next-cache-doctor [directory] [--json] [--fail-on-high]
+npx @adeshsuryandev/next-cache-doctor [directory] [--json] [--fail-on-high]
 ```
 
 `directory` defaults to the current working directory. `--json` prints the same object `run()` returns. `--fail-on-high` exits 1 when any finding is high. Exit 2 means the path was refused or could not be read.

@@ -2,6 +2,20 @@
 
 Each entry matches one tagged commit on `main`. The tag, the `version` field in `package.json`, and this file use the same number.
 
+## 0.2.4 - 2026-10-04
+
+Tag: `v0.2.4`
+
+### Added
+
+- npm package `@adeshsuryandev/next-cache-doctor` (scoped; unscoped `next-cache-doctor` is taken).
+- JSR package `@adeshsuryan/next-cache-doctor` with ESM entry `mod.mjs`.
+- Dual package exports: `require` → `src/index.js`, `import` → `mod.mjs`.
+
+### Changed
+
+- README install paths for npm, JSR, and Packagist.
+
 ## 0.2.3 - 2026-10-04
 
 Tag: `v0.2.3`
