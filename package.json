@@ -3,8 +3,10 @@
   "version": "0.2.4",
   "description": "Read a Next.js project and report cache layers that can stay stale after invalidation.",
   "main": "./src/index.js",
+  "types": "./mod.d.ts",
   "exports": {
     ".": {
+      "types": "./mod.d.ts",
       "import": "./mod.mjs",
       "require": "./src/index.js",
       "default": "./src/index.js"
@@ -12,12 +14,13 @@
     "./package.json": "./package.json"
   },
   "bin": {
-    "next-cache-doctor": "./bin/next-cache-doctor.js"
+    "next-cache-doctor": "bin/next-cache-doctor.js"
   },
   "files": [
     "bin",
     "src",
     "mod.mjs",
+    "mod.d.ts",
     "docs",
     "README.md",
     "CHANGELOG.md",
