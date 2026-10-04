@@ -1,6 +1,6 @@
 {
   "name": "@adeshsuryandev/next-cache-doctor",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Read a Next.js project and report cache layers that can stay stale after invalidation.",
   "main": "./src/index.js",
   "types": "./mod.d.ts",

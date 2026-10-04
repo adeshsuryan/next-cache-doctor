@@ -8,7 +8,7 @@ A database update, `revalidateTag()`, and a fresh server do not guarantee a fres
 
 It is a library and a command. It does not start Next.js, call Redis, or purge a CDN. The command finishes and exits, so a process manager such as PM2 is not part of the setup.
 
-Current release: **0.2.4**. Each release commit on `main` is an annotated git tag, `v0.2.4`, and an entry in [CHANGELOG.md](CHANGELOG.md).
+Current release: **0.2.5**. Each release commit on `main` is an annotated git tag, `v0.2.5`, and an entry in [CHANGELOG.md](CHANGELOG.md).
 
 - GitHub: https://github.com/adeshsuryan/next-cache-doctor
 - npm: https://www.npmjs.com/package/@adeshsuryandev/next-cache-doctor

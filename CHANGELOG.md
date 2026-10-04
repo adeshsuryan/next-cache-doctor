@@ -2,6 +2,14 @@
 
 Each entry matches one tagged commit on `main`. The tag, the `version` field in `package.json`, and this file use the same number.
 
+## 0.2.5 - 2026-10-04
+
+Tag: `v0.2.5`
+
+### Changed
+
+- Repository and social banner updated: footer is `open source · npm · JSR · GitHub` (Packagist label and version number removed from the image).
+
 ## 0.2.4 - 2026-10-04
 
 Tag: `v0.2.4`
