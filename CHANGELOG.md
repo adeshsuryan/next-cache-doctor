@@ -2,6 +2,15 @@
 
 Each entry matches one tagged commit on `main`. The tag, the `version` field in `package.json`, and this file use the same number.
 
+## 0.2.6 - 2026-10-09
+
+Tag: `v0.2.6`
+
+### Changed
+
+- JSR entrypoint is now `mod.ts`: typed exports (`run`, `render`, `Finding`, `RunResult`) with documentation, satisfying JSR's slow-type and symbol-doc checks.
+- Added a JSR publish workflow using OIDC provenance (no token secret), matching the npm workflow.
+
 ## 0.2.5 - 2026-10-04
 
 Tag: `v0.2.5`
