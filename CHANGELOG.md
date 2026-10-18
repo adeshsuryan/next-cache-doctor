@@ -2,6 +2,24 @@
 
 Each entry matches one tagged commit on `main`. The tag, the `version` field in `package.json`, and this file use the same number.
 
+## 0.2.7 - 2026-10-18
+
+Tag: `v0.2.7`
+
+### Fixed
+
+- `tag-invalidation-leaves-router-cache` no longer fires on Route Handlers
+  (`route.ts`/`route.js` and friends). A webhook or cron endpoint calling
+  `revalidateTag` has no client router cache to refresh — the advice now
+  targets Server Action/component call sites only (Next 16 semantics).
+
+### Added
+
+- Five new fixtures/tests covering every rule: timed fetch without a tag,
+  tagged fetch without invalidation, the Route Handler negative case, and a
+  Server Action positive case. 9/9 tests green.
+- GitHub Actions CI on push/PR — `node --test` on Node 18, 20, and 22.
+
 ## 0.2.6 - 2026-10-09
 
 Tag: `v0.2.6`

@@ -19,7 +19,11 @@ function analyze(project) {
     });
   }
 
-  const anyRevalidateTag = findTag(project, () => true);
+  // A Route Handler (webhook, cron endpoint) has no client router — the
+  // router-cache advice only makes sense when revalidateTag runs in a
+  // Server Action or component context.
+  const isRouteHandler = (file) => /(^|\/)route\.(ts|tsx|js|jsx|mjs|cjs)$/.test(file);
+  const anyRevalidateTag = findTag(project, (_call, file) => !isRouteHandler(file));
   const anyUpdateTag = project.files.find((file) => file.signals.updateTags.length > 0);
   const anyRefresh = project.files.find((file) => file.signals.routerRefresh);
   if (anyRevalidateTag && !anyUpdateTag && !anyRefresh) {
@@ -135,7 +139,7 @@ function summarize(project) {
 function findTag(project, predicate) {
   for (const file of project.files) {
     for (const call of file.signals.revalidateTags) {
-      if (predicate(call)) return { file: file.file, call };
+      if (predicate(call, file.file)) return { file: file.file, call };
     }
   }
   return null;
