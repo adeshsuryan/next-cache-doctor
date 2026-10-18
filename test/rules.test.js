@@ -49,3 +49,20 @@ test("stale app still reports all four layer mismatches", () => {
   assert.ok(found.includes("cdn-outlives-data-cache"));
   assert.deepEqual(result.layers.dataCacheTags, ["products", "products:123"]);
 });
+
+test("Next 16: unstable_cache and bare revalidateTag are flagged", () => {
+  const found = ids(run(fixture("next16-app")));
+  assert.ok(found.includes("unstable-cache-deprecated"));
+  assert.ok(found.includes("revalidate-tag-without-profile"));
+});
+
+test("Next 15: the same code does not fire the Next 16 findings", () => {
+  const found = ids(run(fixture("next15-app")));
+  assert.equal(found.includes("unstable-cache-deprecated"), false);
+  assert.equal(found.includes("revalidate-tag-without-profile"), false);
+});
+
+test("cdn shorter than data lifetime does not fire cdn-outlives-data-cache", () => {
+  const found = ids(run(fixture("cdn-aligned-app")));
+  assert.equal(found.includes("cdn-outlives-data-cache"), false);
+});

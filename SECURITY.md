@@ -27,4 +27,11 @@ A finding is a pattern in source. It is not a proof that a production response i
 
 ## Dependencies
 
-Version 0.2.0 has no runtime dependencies. Review `package.json` before any later release that adds one.
+Version 0.3.0 has no runtime dependencies. Review `package.json` before any later release that adds one.
+
+## Supported versions
+
+| Line | Status |
+| --- | --- |
+| `0.3.x` | Supported |
+| `0.2.x` and earlier | Security fixes only if the defect exists there |

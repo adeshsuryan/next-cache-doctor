@@ -90,7 +90,29 @@ function readProject(root) {
     const rel = path.relative(rootReal, file);
     return { file: rel.split(path.sep).join("/"), text, signals: signalsFrom(text) };
   }).filter(Boolean);
-  return { root: rootReal, files };
+  return { root: rootReal, files, nextMajor: detectNextMajor(rootReal) };
+}
+
+function detectNextMajor(rootReal) {
+  let text;
+  try {
+    text = fs.readFileSync(path.join(rootReal, "package.json"), "utf8");
+  } catch {
+    return null;
+  }
+  let pkg;
+  try {
+    pkg = JSON.parse(text);
+  } catch {
+    return null;
+  }
+  const spec =
+    (pkg.dependencies && pkg.dependencies.next) ||
+    (pkg.devDependencies && pkg.devDependencies.next) ||
+    null;
+  if (typeof spec !== "string") return null;
+  const match = spec.match(/(\d+)/);
+  return match ? Number(match[1]) : null;
 }
 
 function signalsFrom(text) {
@@ -156,6 +178,7 @@ function signalsFrom(text) {
     dynamicModes,
     cacheControl,
     useCache: /['"]use cache['"]/.test(text),
+    unstableCache: /\bunstable_cache\s*\(/.test(text),
     routerRefresh: /router\.refresh\s*\(/.test(text),
     cacheHandler: /cacheHandler\s*:/.test(text),
     standalone: /output\s*:\s*['"]standalone['"]/.test(text),

@@ -2,6 +2,29 @@
 
 Each entry matches one tagged commit on `main`. The tag, the `version` field in `package.json`, and this file use the same number.
 
+## 0.3.0 - 2026-10-18
+
+Tag: `v0.3.0`
+
+### Added
+
+- Next.js version detection from `package.json` (`project.nextMajor`).
+- Two Next 16 findings, gated on `nextMajor >= 16`:
+  - `unstable-cache-deprecated` (medium) — `unstable_cache` is deprecated;
+    move to a `use cache` function with `cacheTag`/`cacheLife`.
+  - `revalidate-tag-without-profile` (low) — bare `revalidateTag(tag)` is
+    stale-while-revalidate on Next 16; use `"max"` or `updateTag`.
+- CLI tests (`--json`, `--fail-on-high`, exit 2 on bad path) and fixtures:
+  `next16-app`, `next15-app`, `cdn-aligned-app`. 15 tests total.
+- CI: Node 18/20/22/24 matrix + `node --check` + `npm audit`.
+
+### Changed
+
+- README: tested-Node line and Next coverage note; SECURITY.md support
+  table. `NPM_TOKEN` publish fallback kept (secret exists and is used as
+  the OIDC/Trusted-Publisher fallback — removal needs a manual check of
+  the npm trusted-publisher config first).
+
 ## 0.2.7 - 2026-10-18
 
 Tag: `v0.2.7`

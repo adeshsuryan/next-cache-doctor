@@ -100,6 +100,37 @@ function analyze(project) {
     });
   }
 
+  // Next.js 16 semantics — only fire when the detected Next major is >= 16.
+  if (project.nextMajor !== null && project.nextMajor >= 16) {
+    const unstable = project.files.find((file) => file.signals.unstableCache);
+    if (unstable) {
+      findings.push({
+        id: "unstable-cache-deprecated",
+        risk: "medium",
+        file: unstable.file,
+        line: 1,
+        title: "unstable_cache is deprecated on Next.js 16",
+        detail:
+          "Next 16 deprecates unstable_cache in favour of the use cache directive. The API still runs, but the replacement path is a use cache function with cacheTag/cacheLife.",
+        fix: 'Move the memoised work into a "use cache" function and declare cacheTag()/cacheLife() there.',
+      });
+    }
+
+    const bareTag = findTag(project, (call) => call.profile === null);
+    if (bareTag) {
+      findings.push({
+        id: "revalidate-tag-without-profile",
+        risk: "low",
+        file: bareTag.file,
+        line: bareTag.call.line,
+        title: "revalidateTag called without a profile on Next.js 16",
+        detail:
+          "Next 16 keeps the single-argument form as stale-while-revalidate; it no longer expires the entry immediately. Inside Server Actions, updateTag is the immediate-expiry API.",
+        fix: 'Pass the "max" profile to keep immediate expiry, or switch the call to updateTag inside Server Actions.',
+      });
+    }
+  }
+
   const order = { high: 0, medium: 1, low: 2 };
   findings.sort((a, b) => order[a.risk] - order[b.risk] || a.id.localeCompare(b.id));
   return { layers, findings };
